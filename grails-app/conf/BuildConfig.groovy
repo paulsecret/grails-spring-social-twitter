@@ -19,34 +19,39 @@ grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
 grails.project.dependency.resolution = {
-  // inherit Grails' default dependencies
-  inherits("global") {
-    // uncomment to disable ehcache
-    // excludes 'ehcache'
-  }
-  log "warn" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
-  repositories {
-    grailsPlugins()
-    grailsHome()
-    grailsCentral()
+    // inherit Grails' default dependencies
+    inherits("global") {
+        // uncomment to disable ehcache
+        // excludes 'ehcache'
+    }
 
-    mavenLocal()
-    mavenCentral()
+    log "warn" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
 
-    mavenRepo "http://maven.springframework.org/release"
-    mavenRepo "http://maven.springframework.org/snapshot"
-    mavenRepo "http://maven.springframework.org/milestone"
-  }
-  dependencies {
-    def springSocialVersion = "1.1.0.M4"
-    compile("org.springframework.social:spring-social-twitter:${springSocialVersion}") { transitive = false }
-  }
-  plugins {
-      if (grailsVersion.startsWith('2')) {
-          test(":code-coverage:1.2.5") { export = false }
-          build ":release:3.0.1", ':rest-client-builder:1.0.3', {
-              export = false
-          }
-      }
-  }
+    repositories {
+        grailsPlugins()
+        grailsHome()
+        grailsCentral()
+
+        mavenLocal()
+        mavenCentral()
+
+        mavenRepo "http://maven.springframework.org/release"
+        mavenRepo "http://maven.springframework.org/snapshot"
+        mavenRepo "http://maven.springframework.org/milestone"
+    }
+
+    dependencies {
+        compile "org.springframework.social:spring-social-twitter:1.1.0.RELEASE"
+    }
+
+    plugins {
+        build ":release:3.0.1", ':rest-client-builder:1.0.3', {
+            export = false
+        }
+
+        provided ":spring-social-core:0.2.0-SNAPSHOT"
+    }
 }
+
+//grails.plugin.location.'springsocial-core' = "../grails-spring-social-core"
+
