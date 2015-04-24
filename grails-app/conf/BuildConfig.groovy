@@ -50,7 +50,7 @@ grails.project.dependency.resolution = {
             export = false
         }
 
-        compile ":spring-social-core:0.2.0-SNAPSHOT"
+        compile ":spring-social-core:0.2.0"
     }
 }
 
